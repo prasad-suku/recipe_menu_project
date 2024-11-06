@@ -13,8 +13,11 @@ const App = () => {
       <div className="app min-h-screen p-6 bg-white text-gray-600 text-lg">
         <Navbar />
         <Routes>
-          <Route path="/home" element={<Home></Home>} />
-          <Route path="/description" element={<Descripction></Descripction>} />
+          <Route path="/" element={<Home></Home>} />
+          <Route
+            path="/description/:id"
+            element={<Descripction></Descripction>}
+          />
           <Route path="/favourite" element={<Favoutite></Favoutite>} />
         </Routes>
       </div>
