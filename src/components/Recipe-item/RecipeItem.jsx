@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const RecipeItem = ({ item, key }) => {
+const RecipeItem = ({ item }) => {
   return (
-    <div className="flex flex-col w-80 overflow-hidden p-3 bg-white/70 shadow-md hover:shadow-lg duration-200 gap-3 border-2 rounded-2xl ">
+    <div
+      key={item.id}
+      className="flex flex-col w-80 overflow-hidden p-3 bg-white/70 shadow-md hover:shadow-lg duration-200 gap-3 border-2 rounded-2xl "
+    >
       {/* image */}
       <div className="h-40 flex justify-center overflow-hidden items-start rounded-xl ">
         <img src={item?.image_url} alt="recipe_img" className="block w-full" />

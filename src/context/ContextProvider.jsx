@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Globalcontext = createContext();
@@ -6,7 +6,7 @@ const ContextProvider = ({ children }) => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [recipeList, setRecipeList] = useState([]);
-
+  const navigate = useNavigate();
   // recipe name array list
   const foodItems = [
     "carrot",
@@ -144,7 +144,7 @@ const ContextProvider = ({ children }) => {
   const handlesubmit = async (e) => {
     e.preventDefault();
     // to navigate home page
-    useNavigate("/");
+    navigate("/");
     // alert(search);
     try {
       // setLoading(true);
@@ -153,8 +153,8 @@ const ContextProvider = ({ children }) => {
       );
       const data = await res.json();
       // console.log(data.data.recipes);
-      if (data?.data?.recipes) {
-        setRecipeList(data?.data?.recipes);
+      if (data) {
+        setRecipeList(data.data.recipes);
         setLoading(false);
         setSearch("");
       }
