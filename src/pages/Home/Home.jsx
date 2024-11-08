@@ -15,10 +15,17 @@ const Home = () => {
             return <RecipeItem item={item} key={i}></RecipeItem>;
           })
         ) : (
-          <p className="text-3xl text-center mt-5 text-blue-950">
-            {" "}
-            Search something to display{" "}
-          </p>
+          <div className="h-screen w-screen">
+            <p className="text-3xl mb-20 text-center mt-5 text-blue-950">
+              {" "}
+              Search something for Recipes{" "}
+            </p>
+            <img
+              className="mx-auto m-10 shadow-lg rounded-lg"
+              src="https://i.pinimg.com/736x/01/5f/06/015f069e7211425ada88655bd2ef2307.jpg"
+              alt=""
+            />
+          </div>
         )}
       </div>
     </>

@@ -16,7 +16,7 @@ const RecipeItem = ({ item }) => {
         publisher :
         <span className="text-xm pl-3 font-medium">{item.publisher}</span>
       </p>
-      <h3 className="font-semibold text-xl truncate  text-green-400">
+      <h3 className="font-semibold text-xl truncate  text-green-700">
         {item.title}
       </h3>
 

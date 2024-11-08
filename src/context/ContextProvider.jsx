@@ -6,6 +6,9 @@ const ContextProvider = ({ children }) => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [recipeList, setRecipeList] = useState([]);
+  // const [favoriteList, setFavouritelist] = useState([]);
+  const [favoriteList, setFavouritelist] = useState([]);
+
   const navigate = useNavigate();
   // recipe name array list
   const foodItems = [
@@ -164,7 +167,29 @@ const ContextProvider = ({ children }) => {
       setSearch("");
     }
   };
-  console.log(loading, recipeList);
+
+  // handlesavetoFavorite function
+
+  const handleFavouriteitem = (curRecipe) => {
+    // alert(curRecipe.publisher);
+
+    let cpyFavouriteList = [...favoriteList];
+    const index = cpyFavouriteList.findIndex(
+      (item) => item.id === curRecipe.id
+    );
+
+    if (index === -1) {
+      cpyFavouriteList.push(curRecipe);
+    } else {
+      cpyFavouriteList.splice(index);
+    }
+    setFavouritelist(cpyFavouriteList);
+    // console.log(index);
+
+    // setFavouritelist(curRecipe);
+    // console.log("current re", curRecipe);
+  };
+  // console.log(favoriteList);
 
   return (
     <Globalcontext.Provider
@@ -175,6 +200,8 @@ const ContextProvider = ({ children }) => {
         loading,
         setSearch,
         handlesubmit,
+        handleFavouriteitem,
+        favoriteList,
       }}
     >
       {children}

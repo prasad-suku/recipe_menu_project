@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Globalcontext } from "../../context/ContextProvider";
 
 const Descripction = () => {
+  const { handleFavouriteitem, favoriteList } = useContext(Globalcontext);
   const [recipename, setrecipename] = useState();
   const { id } = useParams();
 
@@ -30,9 +32,9 @@ const Descripction = () => {
     );
   }
   return (
-    <div className="container mx-auto py-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <div className="container mx-auto py-10 grid grid-cols-1 lg:grid-cols-2 gap-10 m-5">
       <div className="row-start-1 lg:row-start-auto">
-        <div className="h-96 overflow-hidden rounded-xl group">
+        <div className="h-96 m-5 overflow-hidden rounded-xl group">
           <img
             src={recipename.image_url}
             className="h-full w-full block group-hover:scale-105 duration-300 "
@@ -42,19 +44,24 @@ const Descripction = () => {
       </div>
 
       {/* data and recipe section */}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 m-5">
         <p className="font-bold capitalize">
           publisher :
           <span className="text-xm pl-3 font-medium">
             {recipename.publisher}
           </span>
         </p>
-        <h3 className="font-semibold text-xl truncate  text-green-400">
+        <h3 className="font-semibold text-xl truncate  text-green-700">
           {recipename.title}
         </h3>
 
-        <button className=" text-lg mt-7 inline-block rounded-lg uppercase font-medium tracking-widder p-3 px-7  hover:shadow-xl bg-black w-3/6    text-white">
-          Save as Favorite
+        <button
+          onClick={() => handleFavouriteitem(recipename)}
+          className=" text-lg mt-7 inline-block rounded-lg capitalize font-medium tracking-widder p-3 px-7  hover:shadow-xl bg-black w-3/6    text-white"
+        >
+          {favoriteList.findIndex((item) => item.id === recipename.id) !== -1
+            ? "Remove Favorite"
+            : "Save as Favorite"}
         </button>
 
         {/* another div for recipe incredients */}
